@@ -1,0 +1,7 @@
+{
+  "extends": ["react-app", "airbnb"],
+  "rules": {
+    "indent": ["error", 2],
+    "max-len": ["error", { "code": 120 }]
+  }
+}
