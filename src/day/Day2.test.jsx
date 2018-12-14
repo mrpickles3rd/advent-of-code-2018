@@ -70,7 +70,7 @@ describe('<Day2 />', () => {
   });
 
   it('makes the sum === 4 * 3 = 12', () => {
-    const input = 'abcdefffff\nbababbcccccvbnnn\n'; //a ===2 - n === 3
+    const input = 'abcdefffff\nbababbcccccvbnnn\n'; // a ===2 - n === 3
     const comp = shallow(<Day2 {...MIN_PROP_TYPES} input={input} />);
     expect(comp.find('#output').text()).toEqual(JSON.stringify(1 * 1));
   });
