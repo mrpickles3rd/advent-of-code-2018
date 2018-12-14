@@ -26,7 +26,7 @@ function Day2({ input = '', input2 = '' }) {
 
   return (
     <div>
-      <pre id="output">{JSON.stringify([twos, threes])}</pre>
+      <pre id="output">{twos * threes}</pre>
       <p id="output2">{output2}</p>
     </div>
   );

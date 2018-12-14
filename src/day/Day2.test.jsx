@@ -20,7 +20,7 @@ describe('<Day2 />', () => {
     shallow(<Day2 {...MIN_PROP_TYPES} />);
   });
 
-  describe('setup tests', () => {
+  describe.skip('setup tests', () => {
     it('abcdef contains no letters that appear exactly two or three times', () => {
       const input = 'abcdef';
       const comp = shallow(<Day2 {...MIN_PROP_TYPES} input={input} />);
