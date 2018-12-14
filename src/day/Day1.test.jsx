@@ -48,7 +48,10 @@ describe('<Day1 />', () => {
     });
 
     it('+3, +3, +4, -2, -4 first reaches 10 twice', () => {
-      const input2 = '+3\n+3\n+4\n-2\n-4';
+      let input2 = '+3\n+3\n+4\n-2\n-4';
+      input2 += '\n';
+      input2 += input2;
+
       const comp = shallow(<Day1 input2={input2} />);
       expect(comp.find('#output2').text()).toEqual('10');
     });
@@ -60,7 +63,7 @@ describe('<Day1 />', () => {
     });
 
     it('+7, +7, -2, -7, -4 first reaches 14 twice', () => {
-      const input2 = '+7\n+7\n-2\n-7\n-4';
+      const input2 = `+7\n+7\n-2\n-7\n-4`;
       const comp = shallow(<Day1 input2={input2} />);
       expect(comp.find('#output2').text()).toEqual('14');
     });
