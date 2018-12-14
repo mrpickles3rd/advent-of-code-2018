@@ -2,11 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Day2({ input = '', input2 = '' }) {
-  const output = input;
+  let twos = 0;
+  let threes = 0;
+  const counts = {};
+
+  input.split('\n').forEach((val) => {
+    let two = 0;
+    let three = 0;
+
+    val.split('').forEach((v) => {
+      counts[v] = (1 + (counts[v]) || 0);
+    });
+
+    Object.keys(counts).forEach((v) => {
+      if (counts[v] === 1) two = 1;
+      if (counts[v] === 2) three = 1;
+    });
+
+    twos += two;
+    threes += three;
+  });
   const output2 = input2;
+
   return (
     <div>
-      <p id="output">{output}</p>
+      <pre id="output">{JSON.stringify([twos, threes])}</pre>
       <p id="output2">{output2}</p>
     </div>
   );
