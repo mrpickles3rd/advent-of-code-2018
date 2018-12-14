@@ -10,18 +10,21 @@ function Day1({ input = '', input2 = '' }) {
   let win = false;
   let output2;
 
-  do {
-    tries--;
+  function numbers(a, b) {
+    arr.push(a);
+    const n = a + parseInt(b, 10);
 
-    reduceNum = input2.split('\n').reduce((a, b) => {
-      arr.push(a);
-      let n = a + parseInt(b, 10);
-      if (!win && arr.indexOf(n) >= 0) {
-        output2 = n;
-        win = true;
-      }
-      return n;
-    }, reduceNum);
+    if (!win && arr.indexOf(n) >= 0) {
+      output2 = n;
+      win = true;
+    }
+
+    return n;
+  }
+
+  do {
+    tries -= 1;
+    reduceNum = input2.split('\n').reduce(numbers, reduceNum);
   } while (!win && tries > 0);
 
   return (
