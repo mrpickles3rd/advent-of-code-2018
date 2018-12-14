@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 function Day2({ input = '', input2 = '' }) {
   let twos = 0;
   let threes = 0;
-  const counts = {};
 
   input.split('\n').forEach((val) => {
+    const counts = {};
     let two = 0;
     let three = 0;
 
