@@ -5,7 +5,7 @@ function Day1({ input = '', input2 = '' }) {
   const output = input.split('\n').reduce((a, b) => (a + parseInt(b, 10)), 0);
 
   const arr = [];
-  let tries = 10;
+  let tries = 1000;
   let reduceNum = 0;
   let win = false;
   let output2;
@@ -23,6 +23,7 @@ function Day1({ input = '', input2 = '' }) {
   }
 
   do {
+    console.log('tries === ', tries)
     tries -= 1;
     reduceNum = input2.split('\n').reduce(numbers, reduceNum);
   } while (!win && tries > 0);
