@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Day2({ input = '', input2 = '' }) {
+function Day2({ input, input2 }) {
   let twos = 0;
   let threes = 0;
 
@@ -58,8 +58,13 @@ function Day2({ input = '', input2 = '' }) {
 }
 
 Day2.propTypes = {
-  input: PropTypes.string, // eslint-disable-line react/require-default-props
-  input2: PropTypes.string, // eslint-disable-line react/require-default-props
+  input: PropTypes.string,
+  input2: PropTypes.string,
+};
+
+Day2.defaultProps = {
+  input: '',
+  input2: '',
 };
 
 export default Day2;

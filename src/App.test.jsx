@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 
-import Enzyme, { shallow } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
-import Adapter from 'enzyme-adapter-react-16';
-
-import App from './App'; // eslint-disable-line import/no-extraneous-dependencies
-
-Enzyme.configure({ adapter: new Adapter() });
+import App from './App';
 
 describe('<App />', () => {
   it('renders without crashing', () => {

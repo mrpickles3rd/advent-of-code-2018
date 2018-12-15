@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Day1({ input = '', input2 = '' }) {
+function Day1({ input, input2 }) {
   const output = input.split('\n').reduce((a, b) => (a + parseInt(b, 10)), 0);
 
   const arr = [];
@@ -36,8 +36,13 @@ function Day1({ input = '', input2 = '' }) {
 }
 
 Day1.propTypes = {
-  input: PropTypes.string, // eslint-disable-line react/require-default-props
-  input2: PropTypes.string, // eslint-disable-line react/require-default-props
+  input: PropTypes.string,
+  input2: PropTypes.string,
+};
+
+Day1.defaultProps = {
+  input: '999',
+  input2: '',
 };
 
 export default Day1;
