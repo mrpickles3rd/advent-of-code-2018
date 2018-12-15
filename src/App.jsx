@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
   state = {
     day1: {
-      d1input: '999',
+      d1input: '',
       d1input2: '',
     },
     day2: {

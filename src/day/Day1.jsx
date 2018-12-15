@@ -29,7 +29,7 @@ function Day1({ input, input2 }) {
 
   return (
     <div>
-      <p id="output">{output}</p>
+      <p id="output">{Number.isNaN(output) ? 'Output was not a number :(' : output}</p>
       <p id="output2">{output2}</p>
     </div>
   );
@@ -41,7 +41,7 @@ Day1.propTypes = {
 };
 
 Day1.defaultProps = {
-  input: '999',
+  input: '',
   input2: '',
 };
 
