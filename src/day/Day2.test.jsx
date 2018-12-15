@@ -10,6 +10,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Day2 />', () => {
   const MIN_PROP_TYPES = { input: '', input2: '' };
+
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Day2 {...MIN_PROP_TYPES} />, div);

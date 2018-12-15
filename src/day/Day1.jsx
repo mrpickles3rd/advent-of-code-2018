@@ -23,7 +23,6 @@ function Day1({ input = '', input2 = '' }) {
   }
 
   do {
-    // console.log('tries === ', tries);
     tries -= 1;
     reduceNum = input2.split('\n').reduce(numbers, reduceNum);
   } while (!win && tries > 0);

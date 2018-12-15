@@ -9,7 +9,8 @@ import Day1 from './Day1'; // eslint-disable-line import/no-extraneous-dependenc
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Day1 />', () => {
-  const MIN_PROP_TYPES = { input: '', input2: '' };
+  const MIN_PROP_TYPES = { input: '999', input2: '' };
+
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Day1 {...MIN_PROP_TYPES} />, div);
