@@ -7,37 +7,33 @@ import './App.css';
 
 class App extends Component {
   state = {
-    day1: {
-      d1input: '',
-      d1input2: '',
-    },
-    day2: {
-      d2input: '',
-      d2input2: '',
-    },
+    d1input: '',
+    d1input2: '',
+    d2input: '',
+    d2input2: '',
   }
 
   handleDay1Change = (event) => {
-    this.setState({ day1: { d1input: event.target.value } });
+    this.setState({ d1input: event.target.value });
   }
 
   handleDay1Change2 = (event) => {
-    this.setState({ day1: { d1input2: event.target.value } });
+    this.setState({ d1input2: event.target.value });
   }
 
   handleDay2Change = (event) => {
-    this.setState({ day2: { d2input: event.target.value } });
+    this.setState({ d2input: event.target.value });
   }
 
   handleDay2Change2 = (event) => {
-    this.setState({ day2: { d2input2: event.target.value } });
+    this.setState({ d2input2: event.target.value });
   }
 
   render() {
     const {
-      day1: { d1input, d1input2 },
-      day2: { d2input, d2input2 },
+      d1input, d1input2, d2input, d2input2,
     } = this.state;
+
     return (
       <div>
         <Day1 input={d1input} input2={d1input2} />

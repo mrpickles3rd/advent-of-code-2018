@@ -29,8 +29,14 @@ function Day1({ input, input2 }) {
 
   return (
     <div>
-      <p id="output">{Number.isNaN(output) ? 'Output was not a number :(' : output}</p>
-      <p id="output2">{output2}</p>
+      <p>
+        {'D1 P1 - '}
+        <span id="output">{Number.isNaN(output) ? 'Output was not a number :(' : output}</span>
+      </p>
+      <p>
+        {'D1 P2 - '}
+        <span id="output2">{typeof output2 === 'number' ? output2 : `Finished the run when win === "${win}" && tries === "${tries}"`}</span>
+      </p>
     </div>
   );
 }

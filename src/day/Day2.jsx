@@ -51,7 +51,13 @@ function Day2({ input, input2 }) {
 
   return (
     <div>
+      <p>
+        {'D2 P1: '}
+      </p>
       <pre id="output">{twos * threes}</pre>
+      <p>
+        {'D2 P2: '}
+      </p>
       <pre id="output2">{win || 'No Match Found :('}</pre>
     </div>
   );
