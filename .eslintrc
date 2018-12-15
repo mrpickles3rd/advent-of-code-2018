@@ -2,6 +2,7 @@
   "extends": ["react-app", "airbnb"],
   "rules": {
     "indent": ["error", 2],
-    "max-len": ["error", { "code": 120 }]
+    "max-len": ["error", { "code": 120 }],
+    "object-curly-newline": ["error", { "multiline": true, "minProperties": 6 }]
   }
 }

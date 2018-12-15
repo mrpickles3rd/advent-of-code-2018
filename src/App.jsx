@@ -1,48 +1,62 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Day1 from './day/Day1';
 import Day2 from './day/Day2';
 
 import './App.css';
 
+const DAYS = ['Day1', 'Day2'];
+
+function SelectDay({ showDay, handleChangeDay }) {
+  return (
+    <select value={showDay} onChange={handleChangeDay}>
+      {DAYS.map(v => (<option key={v} value={v}>{v}</option>))}
+    </select>
+  );
+}
+
+SelectDay.propTypes = {
+  showDay: PropTypes.string,
+  handleChangeDay: PropTypes.func,
+};
+
+SelectDay.defaultProps = {
+  showDay: DAYS[0],
+  handleChangeDay: () => {},
+};
+
 class App extends Component {
   state = {
+    showDay: DAYS[0],
     d1input: '',
     d1input2: '',
     d2input: '',
     d2input2: '',
   }
 
-  handleDay1Change = (event) => {
-    this.setState({ d1input: event.target.value });
+  handleChangeDay = (event) => {
+    this.setState({ showDay: event.target.value });
   }
 
-  handleDay1Change2 = (event) => {
-    this.setState({ d1input2: event.target.value });
-  }
-
-  handleDay2Change = (event) => {
-    this.setState({ d2input: event.target.value });
-  }
-
-  handleDay2Change2 = (event) => {
-    this.setState({ d2input2: event.target.value });
+  handleInputChange = ({ target: { value, name } }) => {
+    this.setState({ [name]: value });
   }
 
   render() {
-    const {
-      d1input, d1input2, d2input, d2input2,
-    } = this.state;
+    const { d1input, d1input2, d2input, d2input2, showDay } = this.state;
 
     return (
       <div>
-        <Day1 input={d1input} input2={d1input2} />
-        <textarea value={d1input} onChange={this.handleDay1Change} />
-        <textarea value={d1input2} onChange={this.handleDay1Change2} />
+        <SelectDay showDay={showDay} handleChangeDay={this.handleChangeDay} />
         <hr />
         <Day2 input={d2input} input2={d2input2} />
-        <textarea value={d2input} onChange={this.handleDay2Change} />
-        <textarea value={d2input2} onChange={this.handleDay2Change2} />
+        <textarea name="d2input" value={d2input} onChange={this.handleInputChange} />
+        <textarea name="d2input2" value={d2input2} onChange={this.handleInputChange} />
+        <hr />
+        <Day1 input={d1input} input2={d1input2} />
+        <textarea name="d1input" value={d1input} onChange={this.handleInputChange} />
+        <textarea name="d1input2" value={d1input2} onChange={this.handleInputChange} />
       </div>
     );
   }

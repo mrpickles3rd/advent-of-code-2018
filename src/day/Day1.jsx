@@ -35,7 +35,9 @@ function Day1({ input, input2 }) {
       </p>
       <p>
         {'D1 P2 - '}
-        <span id="output2">{typeof output2 === 'number' ? output2 : `Finished the run when win === "${win}" && tries === "${tries}"`}</span>
+        <span id="output2">
+          {typeof output2 === 'number' ? output2 : `Finished the run when win === "${win}" && tries === "${tries}"`}
+        </span>
       </p>
     </div>
   );
