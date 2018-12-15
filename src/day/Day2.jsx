@@ -26,33 +26,33 @@ function Day2({ input = '', input2 = '' }) {
   const arr = input2
     .split('\n');
 
-  const win = arr.filter((aRow) => {
-    // console.log('filter((aRow')
-    return arr.some((thisRow) => {
-      // console.log('every((thisRow')
-      if (aRow === thisRow) return false;
+  const matched = arr.filter((aRow => arr.some((thisRow) => {
+    if (aRow === thisRow) return false;
+    let notMatched = 0;
+    const filterItem = aRow.split('');
+    const checkItem = thisRow.split('');
 
-      let notMatched = 0;
-
-      const filterItem = aRow.split('');
-      const checkItem = thisRow.split('');
-      // console.log('filterItem === ', filterItem, ' && checkItem === ', checkItem)
-      // if idx indexOf -1 === 2 time -> POP;
-      filterItem.forEach((letterVal, letterIDX) => { // ToDo: matched > 1 -> POP!
-        // console.log('forEach((letterVal, letterIDX')
-        notMatched = (checkItem[letterIDX] !== letterVal)
-          ? (notMatched + 1)
-          : notMatched;
-      });
-// console.log('RETURN notMatched === ', notMatched)
-      return notMatched === 1;
+    filterItem.forEach((letterVal, letterIDX) => {
+      notMatched = (checkItem[letterIDX] !== letterVal)
+        ? (notMatched + 1)
+        : notMatched;
     });
-  });
+
+    return notMatched === 1;
+  })));
+
+  let win;
+  if (matched.length === 2) {
+    const m1 = matched[0].split('');
+    const m2 = matched[1].split('');
+
+    win = m1.filter((v, i) => v === m2[i]).join('');
+  }
 
   return (
     <div>
       <pre id="output">{twos * threes}</pre>
-      <pre id="output2">{JSON.stringify(win, null, 3)}</pre>
+      <pre id="output2">{win || 'No Match Found :('}</pre>
     </div>
   );
 }
