@@ -74,4 +74,16 @@ describe('<Day2 />', () => {
     const comp = shallow(<Day2 {...MIN_PROP_TYPES} input={input} />);
     expect(comp.find('#output').text()).toEqual(JSON.stringify(1 * 1));
   });
+
+  it('"fgij" - The boxes will have IDs which differ by exactly one character', () => {
+    const input2 = 'abcde\nfghij\nklmno\npqrst\nfguij\naxcye\nwvxyz'; // a ===2 - n === 3
+    const comp = shallow(<Day2 {...MIN_PROP_TYPES} input2={input2} />);
+    expect(comp.find('#output2').text()).toEqual('fgij');
+  });
+
+  it('"aaaaa" - The boxes will have IDs which differ by exactly one character', () => {
+    const input2 = 'caaaaa\nbbaaaa\nxaaaaa'; // a ===2 - n === 3
+    const comp = shallow(<Day2 {...MIN_PROP_TYPES} input2={input2} />);
+    expect(comp.find('#output2').text()).toEqual('aaaaa');
+  });
 });
