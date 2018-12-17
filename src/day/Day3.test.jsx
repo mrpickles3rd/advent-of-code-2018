@@ -17,9 +17,9 @@ describe('<Day3 />', () => {
 
   describe('part one', () => {
     it('...', () => {
-      const input = '...';
+      const input = '....';
       const comp = shallow(<Day3 input={input} />);
-      expect(comp.find('#output').text()).toEqual('???');
+      expect(comp.find('#output').text()).toEqual('????');
     });
   });
 
