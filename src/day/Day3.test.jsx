@@ -16,10 +16,12 @@ describe('<Day3 />', () => {
   });
 
   describe('part one', () => {
-    it('...', () => {
-      const input = '....';
+    it('How many square inches of fabric are within two or more claims', () => {
+      const input = `#1 @ 1,3: 4x4
+#2 @ 3,1: 4x4
+#3 @ 5,5: 2x2`;
       const comp = shallow(<Day3 input={input} />);
-      expect(comp.find('#output').text()).toEqual('????');
+      expect(comp.find('#output').text()).toEqual('4');
     });
   });
 
