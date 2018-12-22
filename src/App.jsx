@@ -15,8 +15,8 @@ class App extends Component {
     input2: '',
   }
 
-  handleChangeDay = (event) => {
-    this.setState({ input: '', input2: '', showDay: event.target.value });
+  handleChangeDay = ({ target: { value } }) => {
+    this.setState({ input: '', input2: '', showDay: value });
   }
 
   handleInputChange = ({ target: { value, name } }) => {

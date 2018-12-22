@@ -14,10 +14,15 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
     return grid;
   }
   const values = input.split('\n').map(
-    v => v.replace(/(\s+|,|:|x|#|@)/g, '').split('').slice(1, 5).map(v2 => parseInt(v2, 10)),
+    v => v
+      .replace(/(\s+|,|:|x|#|@)/g, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .slice(1, 5)
+      .map(v2 => parseInt(v2, 10)),
   );
-  const grid = Array.from({ length: 12 }, () => Array.from({ length: 12 }, () => 0)); // getStartingSize(values);
-
+  const grid = Array.from({ length: 1234 }, () => Array.from({ length: 1234 }, () => 0)); // getStartingSize(values);
+console.log('values === ', values)
   values.forEach((v, idx) => {
     for (let i = 0; i < v[2]; i += 1) { // ToDo: Check the v[n] x/y value
       for (let j = 0; j < v[3]; j += 1) { // ToDo: Check the v[n] x/y value
@@ -33,6 +38,9 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
 
   return (
     <div>
+      <textarea name={name} value={input} onChange={handleInputChange} />
+      <textarea name={name2} value={input2} onChange={handleInputChange} />
+
       <p>
         {'D3 P1 - '}
         <span id="output">{output || 'OPPS! :('}</span>
@@ -42,9 +50,6 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
         {'D3 P2 - '}
         <span id="output2">{output2}</span>
       </p>
-
-      <textarea name={name} value={input} onChange={handleInputChange} />
-      <textarea name={name2} value={input2} onChange={handleInputChange} />
     </div>
   );
 }
