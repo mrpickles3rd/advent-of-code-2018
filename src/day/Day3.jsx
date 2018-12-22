@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Day3({ input, input2 }) {
+function Day3({ input, input2, name, name2, handleInputChange }) {
   // NOTE: Not handling zeros (0), just added one or two to the result.
   function getStartingSize(rows) {
     // This is a bit OTT and way to big for what I need.
@@ -14,13 +14,13 @@ function Day3({ input, input2 }) {
     return grid;
   }
   const values = input.split('\n').map(
-    v => v.replace(/(\s+|,|:|x)/g, '').split('').slice(3, 10).map(v2 => parseInt(v2, 10)),
+    v => v.replace(/(\s+|,|:|x|#|@)/g, '').split('').slice(1, 5).map(v2 => parseInt(v2, 10)),
   );
-  const grid = getStartingSize(values);
+  const grid = Array.from({ length: 12 }, () => Array.from({ length: 12 }, () => 0)); // getStartingSize(values);
 
   values.forEach((v, idx) => {
-    for (let i = 0; i < v[3]; i += 1) {
-      for (let j = 0; j < v[3]; j += 1) {
+    for (let i = 0; i < v[2]; i += 1) { // ToDo: Check the v[n] x/y value
+      for (let j = 0; j < v[3]; j += 1) { // ToDo: Check the v[n] x/y value
         grid[v[0] + i][v[1] + j] = grid[v[0] + i][v[1] + j] ? 'X' : idx + 1;
       }
     }
@@ -36,12 +36,15 @@ function Day3({ input, input2 }) {
       <p>
         {'D3 P1 - '}
         <span id="output">{output || 'OPPS! :('}</span>
-        <pre>{JSON.stringify(grid.map(v => v.join(', ')), null, 3)}</pre>
       </p>
+      <pre>{JSON.stringify(grid.map(v => v.join(', ')), null, 3)}</pre>
       <p>
         {'D3 P2 - '}
         <span id="output2">{output2}</span>
       </p>
+
+      <textarea name={name} value={input} onChange={handleInputChange} />
+      <textarea name={name2} value={input2} onChange={handleInputChange} />
     </div>
   );
 }
@@ -49,11 +52,20 @@ function Day3({ input, input2 }) {
 Day3.propTypes = {
   input: PropTypes.string,
   input2: PropTypes.string,
+  name: PropTypes.string,
+  name2: PropTypes.string,
+  handleInputChange: PropTypes.func,
 };
 
 Day3.defaultProps = {
-  input: '',
+  input: `#1 @ 1,3: 4x4
+#2 @ 3,1: 4x4
+#3 @ 5,5: 2x2
+#4 @ 1,1: 1x5`,
   input2: '',
+  name: '',
+  name2: '',
+  handleInputChange: () => {},
 };
 
 export default Day3;

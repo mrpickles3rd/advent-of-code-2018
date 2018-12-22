@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Day2({ input, input2 }) {
+function Day2({ input, input2, name, name2, handleInputChange }) {
   let twos = 0;
   let threes = 0;
 
@@ -59,6 +59,9 @@ function Day2({ input, input2 }) {
         {'D2 P2: '}
       </p>
       <pre id="output2">{win || 'No Match Found :('}</pre>
+
+      <textarea name={name} value={input} onChange={handleInputChange} />
+      <textarea name={name2} value={input2} onChange={handleInputChange} />
     </div>
   );
 }
@@ -66,11 +69,17 @@ function Day2({ input, input2 }) {
 Day2.propTypes = {
   input: PropTypes.string,
   input2: PropTypes.string,
+  name: PropTypes.string,
+  name2: PropTypes.string,
+  handleInputChange: PropTypes.func,
 };
 
 Day2.defaultProps = {
   input: '',
   input2: '',
+  name: '',
+  name2: '',
+  handleInputChange: () => {},
 };
 
 export default Day2;

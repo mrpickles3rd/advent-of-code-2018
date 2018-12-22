@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Day1({ input, input2 }) {
+function Day1({ input, input2, name, name2, handleInputChange }) {
   const output = input.split('\n').reduce((a, b) => (a + parseInt(b, 10)), 0);
 
   const arr = [];
@@ -39,6 +39,9 @@ function Day1({ input, input2 }) {
           {typeof output2 === 'number' ? output2 : `Finished the run when win === "${win}" && tries === "${tries}"`}
         </span>
       </p>
+
+      <textarea name={name} value={input} onChange={handleInputChange} />
+      <textarea name={name2} value={input2} onChange={handleInputChange} />
     </div>
   );
 }
@@ -46,11 +49,17 @@ function Day1({ input, input2 }) {
 Day1.propTypes = {
   input: PropTypes.string,
   input2: PropTypes.string,
+  name: PropTypes.string,
+  name2: PropTypes.string,
+  handleInputChange: PropTypes.func,
 };
 
 Day1.defaultProps = {
   input: '',
   input2: '',
+  name: '',
+  name2: '',
+  handleInputChange: () => {},
 };
 
 export default Day1;
