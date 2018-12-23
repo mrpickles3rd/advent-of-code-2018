@@ -33,6 +33,7 @@ function getList(input) {
         list[id].values.push({
           from: parseInt(b.substring(10, 12), 10),
           to: parseInt(a.substring(10, 12), 10),
+          key: id,
         });
       }
     }
@@ -50,13 +51,22 @@ function getMostSleepKey(list) {
 function getMinsSleeping(item = {}) {
   const mins = Array.from({ length: 60 }, (v, idx) => ({ idx, val: 0 }));
 
-  (item.values || []).forEach(({ from, to }) => {
+  (item.values || []).forEach(({ from, to, key }) => {
     for (let i = from; i < to; i += 1) {
       mins[i].val += 1;
+      mins[i].key = key;
     }
   });
 
   return mins;
+}
+
+function getMostPopularMin(list) {
+  const r = ((Object.keys(list).map(
+    key => getMinsSleeping(list[key]).sort((a, b) => b.val - a.val),
+  ).sort((a, b) => b[0].val - a[0].val)[0] || [])[0] || {});
+
+  return r.idx * r.key;
 }
 
 function Day4({ input, input2, name, name2, handleInputChange }) {
@@ -67,7 +77,7 @@ function Day4({ input, input2, name, name2, handleInputChange }) {
     getMinsSleeping(list[mostSleepKey]).sort((a, b) => b.val - a.val)[0].idx
     * mostSleepKey
   );
-  const output2 = input2;
+  const output2 = getMostPopularMin(list);
 
   return (
     <div>
@@ -77,8 +87,8 @@ function Day4({ input, input2, name, name2, handleInputChange }) {
       <pre id="output">{output || '>:o)'}</pre>
       <p>
         {'D4 P2 - '}
-        <span id="output2">{output2}</span>
       </p>
+      <pre id="output2">{JSON.stringify(output2, null, 3)}</pre>
 
       <textarea name={name} value={input} onChange={handleInputChange} />
       <textarea name={name2} value={input2} onChange={handleInputChange} />
