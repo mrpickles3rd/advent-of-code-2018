@@ -35,10 +35,12 @@ describe('<Day3 />', () => {
   });
 
   describe('part two', () => {
-    it('...', () => {
-      const input2 = '...';
+    it('should find the only compleat square (3)', () => {
+      const input2 = `#1 @ 1,3: 4x4
+#2 @ 3,1: 4x4
+#3 @ 5,5: 2x2`;
       const comp = shallow(<Day3 input2={input2} />);
-      expect(comp.find('#output2').text()).toEqual('???');
+      expect(comp.find('#output2').text()).toEqual('3');
     });
   });
 });

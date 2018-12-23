@@ -12,9 +12,10 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
   );
   const grid = Array.from({ length: 1234 }, () => Array.from({ length: 1234 }, () => 0));
 
+  // Fill the grid
   values.forEach((v, idx) => {
-    for (let i = 0; i < v[2]; i += 1) { // ToDo: Check the v[n] x/y value
-      for (let j = 0; j < v[3]; j += 1) { // ToDo: Check the v[n] x/y value
+    for (let i = 0; i < v[2]; i += 1) {
+      for (let j = 0; j < v[3]; j += 1) {
         grid[v[0] + i][v[1] + j] = grid[v[0] + i][v[1] + j] ? 'X' : idx + 1;
       }
     }
@@ -23,7 +24,24 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
   let output = 0;
   grid.forEach(v => v.forEach((v2) => { output = v2 === 'X' ? output += 1 : output += 0; }));
 
-  const output2 = input2;
+  // Find full paten
+  let compleatIDX;
+  values.forEach((v, idx) => {
+    let isCompleat = true;
+    for (let i = 0; i < v[2]; i += 1) {
+      for (let j = 0; j < v[3]; j += 1) {
+        if (grid[v[0] + i][v[1] + j] === 'X') {
+          isCompleat = false;
+        }
+      }
+    }
+
+    if (isCompleat) {
+      compleatIDX = idx + 1;
+    }
+  });
+
+  const output2 = compleatIDX;
 
   return (
     <div>
