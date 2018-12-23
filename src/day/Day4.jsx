@@ -10,7 +10,7 @@ function byDate(a, b) {
   return 0;
 }
 
-function Day4({ input, input2, name, name2, handleInputChange }) {
+function getList(input) {
   let id;
   const list = {};
 
@@ -38,19 +38,35 @@ function Day4({ input, input2, name, name2, handleInputChange }) {
     }
   });
 
-  const mostSleep = Object.keys(list).map(
+  return list;
+}
+
+function getMostSleepKey(list) {
+  return (Object.keys(list).map(
     key => ({ key, sleep: list[key].sleep }),
-  ).sort((a, b) => b.sleep - a.sleep)[0].key;
+  ).sort((a, b) => b.sleep - a.sleep)[0] || {}).key;
+}
 
-  const aaaaa = Array.from({ length: 60 }, (v, idx) => ({ idx, val: 0 }));
+function getMinsSleeping(item = {}) {
+  const mins = Array.from({ length: 60 }, (v, idx) => ({ idx, val: 0 }));
 
-  list[mostSleep].values.forEach(({ from, to }) => {
+  (item.values || []).forEach(({ from, to }) => {
     for (let i = from; i < to; i += 1) {
-      aaaaa[i].val += 1;
+      mins[i].val += 1;
     }
   });
 
-  const output = aaaaa.sort((a, b) => b.val - a.val)[0].idx * mostSleep;
+  return mins;
+}
+
+function Day4({ input, input2, name, name2, handleInputChange }) {
+  const list = getList(input);
+  const mostSleepKey = getMostSleepKey(list);
+
+  const output = (
+    getMinsSleeping(list[mostSleepKey]).sort((a, b) => b.val - a.val)[0].idx
+    * mostSleepKey
+  );
   const output2 = input2;
 
   return (
@@ -58,7 +74,7 @@ function Day4({ input, input2, name, name2, handleInputChange }) {
       <p>
         {'D4 P1 - '}
       </p>
-      <pre id="output">{JSON.stringify(output, null, 3)}</pre>
+      <pre id="output">{output || '>:o)'}</pre>
       <p>
         {'D4 P2 - '}
         <span id="output2">{output2}</span>
@@ -79,23 +95,7 @@ Day4.propTypes = {
 };
 
 Day4.defaultProps = {
-  input: `[1518-11-01 00:05] falls asleep
-[1518-11-01 00:00] Guard #10 begins shift
-[1518-11-01 00:25] wakes up
-[1518-11-01 00:30] falls asleep
-[1518-11-01 00:55] wakes up
-[1518-11-01 23:58] Guard #99 begins shift
-[1518-11-02 00:40] falls asleep
-[1518-11-02 00:50] wakes up
-[1518-11-03 00:05] Guard #10 begins shift
-[1518-11-03 00:24] falls asleep
-[1518-11-03 00:29] wakes up
-[1518-11-04 00:02] Guard #99 begins shift
-[1518-11-04 00:36] falls asleep
-[1518-11-04 00:46] wakes up
-[1518-11-05 00:03] Guard #99 begins shift
-[1518-11-05 00:45] falls asleep
-[1518-11-05 00:55] wakes up`,
+  input: '',
   input2: '',
   name: '',
   name2: '',
