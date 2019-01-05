@@ -16,54 +16,49 @@ describe('<Day5 />', () => {
   });
 
   describe('part one', () => {
-    it('times the "ID" with the most mins', () => {
-      const input = `[1518-11-01 00:05] falls asleep
-[1518-11-01 00:00] Guard #10 begins shift
-[1518-11-01 00:25] wakes up
-[1518-11-01 00:30] falls asleep
-[1518-11-01 00:55] wakes up
-[1518-11-01 23:58] Guard #99 begins shift
-[1518-11-02 00:40] falls asleep
-[1518-11-02 00:50] wakes up
-[1518-11-03 00:05] Guard #10 begins shift
-[1518-11-03 00:24] falls asleep
-[1518-11-03 00:29] wakes up
-[1518-11-04 00:02] Guard #99 begins shift
-[1518-11-04 00:36] falls asleep
-[1518-11-04 00:46] wakes up
-[1518-11-05 00:03] Guard #99 begins shift
-[1518-11-05 00:45] falls asleep
-[1518-11-05 00:55] wakes up`;
+    it('In aA, a and A react, leaving nothing behind', () => {
+      const input = 'aA';
       const comp = shallow(<Day5 input={input} />);
-      const ID = 10;
-      const mostTime = 24;
-      expect(comp.find('#output').text()).toEqual(`${ID * mostTime}`);
+      // expect(comp.find('#output').text()).toEqual('');
+      expect(comp.find('#output').text()).toEqual(`${''.length}`);
+    });
+
+    it('In abBA, bB destroys itself, leaving aA. As above, this then destroys itself, leaving nothing', () => {
+      const input = 'abBA';
+      const comp = shallow(<Day5 input={input} />);
+      // expect(comp.find('#output').text()).toEqual('');
+      expect(comp.find('#output').text()).toEqual(`${''.length}`);
+    });
+
+    it('In abAB, no two adjacent units are of the same type, and so nothing happens', () => {
+      const input = 'abAB';
+      const comp = shallow(<Day5 input={input} />);
+      // expect(comp.find('#output').text()).toEqual('abAB');
+      expect(comp.find('#output').text()).toEqual(`${'abAB'.length}`);
+    });
+
+    it('In aabAAB, even though aa and AA are of the same type, their polarities match, and so nothing happens', () => {
+      const input = 'aabAAB';
+      const comp = shallow(<Day5 input={input} />);
+      // expect(comp.find('#output').text()).toEqual('aabAAB');
+      expect(comp.find('#output').text()).toEqual(`${'aabAAB'.length}`);
+    });
+
+    it('In dabAcCaCBAcCcaDA', () => {
+      const input = 'dabAcCaCBAcCcaDA';
+      // dabAaCBAcaDA
+      // dabCBAcaDA
+      const comp = shallow(<Day5 input={input} />);
+      // expect(comp.find('#output').text()).toEqual('dabCBAcaDA');
+      expect(comp.find('#output').text()).toEqual(`${'dabCBAcaDA'.length}`);
     });
   });
 
   describe('part two', () => {
     it('which guard is most frequently asleep on the same minute', () => {
-      const input1 = `[1518-11-01 00:05] falls asleep
-[1518-11-01 00:00] Guard #10 begins shift
-[1518-11-01 00:25] wakes up
-[1518-11-01 00:30] falls asleep
-[1518-11-01 00:55] wakes up
-[1518-11-01 23:58] Guard #99 begins shift
-[1518-11-02 00:40] falls asleep
-[1518-11-02 00:50] wakes up
-[1518-11-03 00:05] Guard #10 begins shift
-[1518-11-03 00:24] falls asleep
-[1518-11-03 00:29] wakes up
-[1518-11-04 00:02] Guard #99 begins shift
-[1518-11-04 00:36] falls asleep
-[1518-11-04 00:46] wakes up
-[1518-11-05 00:03] Guard #99 begins shift
-[1518-11-05 00:45] falls asleep
-[1518-11-05 00:55] wakes up`;
+      const input1 = ``;
       const comp = shallow(<Day5 input1={input1} />);
-      const ID = 99;
-      const mostTime = 45;
-      expect(comp.find('#output2').text()).toEqual(`${ID * mostTime}`);
+      expect(comp.find('#output2').text()).toEqual(`...`);
     });
   });
 });

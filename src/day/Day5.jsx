@@ -1,8 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+function getPartOne(val) {
+  let tries = 1000;
+  let notDone = true;
+  let v;
+
+  while (tries > 0 && notDone) {
+    v = (v && v.filter(Boolean)) || val;
+    tries -= 1;
+    notDone = false;
+    for (let i = 0; i < v.length; i += 1) {
+      if (v[i - 1]) {
+        if (
+          v[i].toLowerCase() === v[i - 1].toLowerCase()
+          && v[i] !== v[i - 1]
+        ) {
+          v[i] = '';
+          v[i - 1] = '';
+          notDone = true;
+        }
+      }
+    }
+  }
+
+  return v.join('').length;
+}
+
 function Day5({ input, input2, name, name2, handleInputChange }) {
-  const output = input;
+  const output = getPartOne(input.split(''));
+
   const output2 = input2;
 
   return (
