@@ -28,7 +28,9 @@ function getPartOne(val) {
 }
 
 function Day5({ input, input2, name, name2, handleInputChange }) {
+  console.time('ASD')
   const output = getPartOne(input.split(''));
+  console.timeEnd('ASD')
 
   const output2 = input2;
 
