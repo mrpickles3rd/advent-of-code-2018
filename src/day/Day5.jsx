@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function getPartOne(val) {
-  let tries = 1000;
+  let tries = 10000;
   let notDone = true;
   let v;
 
   while (tries > 0 && notDone) {
+    if (tries < 10) {
+      console.log('tries === ', tries);
+    }
     v = (v && v.filter(Boolean)) || val;
     tries -= 1;
     notDone = false;
@@ -27,12 +30,17 @@ function getPartOne(val) {
   return v.join('').length;
 }
 
-function Day5({ input, input2, name, name2, handleInputChange }) {
+function Day5({ input, input2, test, name, name2, handleInputChange }) {
   console.time('ASD');
   const output = getPartOne(input.split(''));
   console.timeEnd('ASD');
 
-  const output2 = input2;
+  const toCheck = (test && test.split('')) || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const output2 = toCheck
+    .map(
+      v => getPartOne(input2.split('').filter(val => val.toUpperCase() !== v)),
+    )
+    .sort((a, b) => a - b)[0];
 
   return (
     <div>
@@ -54,6 +62,7 @@ function Day5({ input, input2, name, name2, handleInputChange }) {
 Day5.propTypes = {
   input: PropTypes.string,
   input2: PropTypes.string,
+  test: PropTypes.string,
   name: PropTypes.string,
   name2: PropTypes.string,
   handleInputChange: PropTypes.func,
@@ -61,7 +70,8 @@ Day5.propTypes = {
 
 Day5.defaultProps = {
   input: '',
-  input2: '',
+  input2: 'dabAcCaCBAcCcaDA',
+  test: '',
   name: '',
   name2: '',
   handleInputChange: () => {},

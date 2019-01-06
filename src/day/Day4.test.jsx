@@ -43,7 +43,7 @@ describe('<Day4 />', () => {
 
   describe('part two', () => {
     it('which guard is most frequently asleep on the same minute', () => {
-      const input1 = `[1518-11-01 00:05] falls asleep
+      const input = `[1518-11-01 00:05] falls asleep
 [1518-11-01 00:00] Guard #10 begins shift
 [1518-11-01 00:25] wakes up
 [1518-11-01 00:30] falls asleep
@@ -60,7 +60,7 @@ describe('<Day4 />', () => {
 [1518-11-05 00:03] Guard #99 begins shift
 [1518-11-05 00:45] falls asleep
 [1518-11-05 00:55] wakes up`;
-      const comp = shallow(<Day4 input1={input1} />);
+      const comp = shallow(<Day4 input={input} />);
       const ID = 99;
       const mostTime = 45;
       expect(comp.find('#output2').text()).toEqual(`${ID * mostTime}`);

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 
 import Day5 from './Day5';
-import Day5p1 from './Day5p1';
+import Day5p1 from './Day5p1.json';
+import Day5p2 from './Day5p2.json';
 
 describe('<Day5 />', () => {
   it('renders without crashing', () => {
@@ -63,10 +64,38 @@ describe('<Day5 />', () => {
   });
 
   describe('part two', () => {
-    it('which guard is most frequently asleep on the same minute', () => {
-      const input1 = ``;
-      const comp = shallow(<Day5 input1={input1} />);
-      expect(comp.find('#output2').text()).toEqual(`...`);
+    const input2 = 'dabAcCaCBAcCcaDA';
+
+    describe('with a single test value', () => {
+      it('Removing all A/a units produces dbCBcD with length 6', () => {
+        const comp = shallow(<Day5 input2={input2} test="A" />);
+        expect(comp.find('#output2').text()).toEqual(`${'dbCBcD'.length}`);
+      });
+
+      it('Removing all B/b units produces daCAcaDA with length 8', () => {
+        const comp = shallow(<Day5 input2={input2} test="B" />);
+        expect(comp.find('#output2').text()).toEqual(`${'daCAcaDA'.length}`);
+      });
+
+      it('Removing all C/c units produces daDA with length 4', () => {
+        const comp = shallow(<Day5 input2={input2} test="C" />);
+        expect(comp.find('#output2').text()).toEqual(`${'daDA'.length}`);
+      });
+
+      it('Removing all D/d units produces abCBAc with length 6', () => {
+        const comp = shallow(<Day5 input2={input2} test="D" />);
+        expect(comp.find('#output2').text()).toEqual(`${'abCBAc'.length}`);
+      });
+    });
+
+    it('should find the shortest polymer you can produce (4)', () => {
+      const comp = shallow(<Day5 input2={input2} test="ABCD" />);
+      expect(comp.find('#output2').text()).toEqual(`${'daDA'.length}`);
+    });
+
+    it('final result for d5p1', () => {
+      const comp = shallow(<Day5 input2={Day5p2} />);
+      expect(comp.find('#output2').text()).toEqual(`${4098}`);
     });
   });
 });
