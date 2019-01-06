@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 
 import Day5 from './Day5';
+import Day5p1 from './Day5p1';
 
 describe('<Day5 />', () => {
   it('renders without crashing', () => {
@@ -51,6 +52,13 @@ describe('<Day5 />', () => {
       const comp = shallow(<Day5 input={input} />);
       // expect(comp.find('#output').text()).toEqual('dabCBAcaDA');
       expect(comp.find('#output').text()).toEqual(`${'dabCBAcaDA'.length}`);
+    });
+
+    it('the result is...', () => {
+      const input = Day5p1;
+      const comp = shallow(<Day5 input={input} />);
+      // expect(comp.find('#output').text()).toEqual('dabCBAcaDA');
+      expect(comp.find('#output').text()).toEqual(`${11754}`);
     });
   });
 
