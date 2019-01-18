@@ -4,8 +4,8 @@ import { shallow, mount } from 'enzyme';
 
 import App from './App';
 
-import SelectDay from './SelectDay';
-import dayMap from './day';
+import dayMap from './days2018';
+import yearMap from './years';
 
 describe('<App />', () => {
   it('renders without crashing', () => {
@@ -18,27 +18,33 @@ describe('<App />', () => {
     shallow(<App />);
   });
 
-  it('should render <SelectDay />', () => {
+  it('should render 2 <select /> elements', () => {
     const component = shallow(<App />);
 
-    expect(component.find(SelectDay).length).toBe(1);
+    expect(component.find('select').length).toBe(2);
+  });
+
+  it('should render <SelectYear /> with the options from `years`', () => {
+    const component = mount(<App />);
+    const expectedYearOptions = Object.keys(yearMap).length;
+
+    expect(component.find('#year option').length).toBeGreaterThan(0);
+    expect(component.find('#year option').length).toBe(expectedYearOptions);
   });
 
   it('should render <SelectDay /> with the options from `day/index.js`', () => {
     const component = mount(<App />);
     const expectedOptions = Object.keys(dayMap).length;
 
-    expect(component.find('option').length).toBeGreaterThan(0);
-    expect(component.find('option').length).toBe(expectedOptions);
+    expect(component.find('#day option').length).toBeGreaterThan(0);
+    expect(component.find('#day option').length).toBe(expectedOptions);
   });
 
   it('should render `select` with the selected being the last in `day/index.js`', () => {
     const component = mount(<App />);
     const expectedSelected = Object.keys(dayMap)[Object.keys(dayMap).length - 1];
 
-    expect(component.find('select').props().value).toBeDefined();
-    expect(component.find('select').props().value).toContain('Day');
-    expect(component.find('select').props().value).toBe(expectedSelected);
+    expect(component.find('select#day').props().value).toBe(expectedSelected);
   });
 
   it('should render the selected day', () => {

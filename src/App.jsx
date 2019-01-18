@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import SelectDay from './SelectDay';
+import yearMap from './years';
 
-import dayMap from './day';
+const YEAR_KEYS = [...Object.keys(yearMap)];
+const DEFAULT_YEAR_KEY = YEAR_KEYS[YEAR_KEYS.length - 1];
 
-const DAYS = [...Object.keys(dayMap)];
-const DEFAULT_DAY = DAYS[DAYS.length - 1];
+function getDayToShow(yearKey) {
+  return Object.keys(yearMap[yearKey])[Object.keys(yearMap[yearKey]).length - 1];
+}
+
+function getDayKey(yearKey) {
+  return Object.keys(yearMap[yearKey]);
+}
 
 class App extends Component {
   state = {
-    showDay: DEFAULT_DAY,
+    showYear: DEFAULT_YEAR_KEY,
+    showDay: getDayToShow(DEFAULT_YEAR_KEY),
+    dayKeys: getDayKey(DEFAULT_YEAR_KEY),
     input: '',
     input2: '',
+  }
+
+  handleChangeYear = ({ target: { value: yearKey } }) => {
+    this.setState({
+      input: '',
+      input2: '',
+      showYear: yearKey,
+      showDay: getDayToShow(yearKey),
+      dayKeys: getDayKey(yearKey),
+    });
   }
 
   handleChangeDay = ({ target: { value } }) => {
@@ -24,12 +42,18 @@ class App extends Component {
   }
 
   render() {
-    const { input, input2, showDay } = this.state;
-    const Day = dayMap[showDay];
+    const { input, input2, showDay, showYear, dayKeys } = this.state;
+
+    const Day = yearMap[showYear][showDay];
 
     return (
       <div>
-        <SelectDay DAYS={DAYS} showDay={showDay} handleChangeDay={this.handleChangeDay} />
+        <select id="year" value={showYear} onChange={this.handleChangeYear}>
+          {YEAR_KEYS.map(v => (<option key={v} value={v}>{v}</option>))}
+        </select>
+        <select id="day" value={showDay} onChange={this.handleChangeDay}>
+          {dayKeys.map(v => (<option key={v} value={v}>{v}</option>))}
+        </select>
         <hr />
         <Day
           input={input}
