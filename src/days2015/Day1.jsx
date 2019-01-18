@@ -2,8 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Day1({ input, input2, name, name2, handleInputChange }) {
-  const output = input;
-  const output2 = input2;
+  const output = input.split('').reduce((a, b) => (b === ')' ? a - 1 : a + 1), 0);
+
+  let i = 0;
+  let character;
+  input2.split('').reduce((a, b) => {
+    i += 1;
+    const ret = b === ')' ? a - 1 : a + 1;
+    if (ret === -1 && !character) character = i;
+    return ret;
+  }, 0);
+  const output2 = character;
 
   return (
     <div>
