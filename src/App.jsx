@@ -4,7 +4,7 @@ import './App.css';
 import yearMap from './years';
 
 const YEAR_KEYS = [...Object.keys(yearMap)];
-const DEFAULT_YEAR_KEY = YEAR_KEYS[YEAR_KEYS.length - 1];
+const DEFAULT_YEAR_KEY = YEAR_KEYS[0]; // YEAR_KEYS[YEAR_KEYS.length - 1];
 
 function getDayToShow(yearKey) {
   return Object.keys(yearMap[yearKey])[Object.keys(yearMap[yearKey]).length - 1];
