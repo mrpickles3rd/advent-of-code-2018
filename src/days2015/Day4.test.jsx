@@ -30,15 +30,14 @@ describe('<Day4 />', () => {
 
     it('Day 4 Part 1 is', () => {
       const comp = shallow(<Day4 input="iwrupvqb" />);
-      expect(comp.find('#output').text()).toEqual('???');
+      expect(comp.find('#output').text()).toEqual('346386');
     });
   });
 
   describe('part two', () => {
-    it('^v delivers presents to 3 houses, because Santa goes north, and then Robo-Santa goes south', () => {
-      const input1 = '^v';
-      const comp = shallow(<Day4 input={input1} />);
-      expect(comp.find('#output2').text()).toEqual('3');
+    it('with 6 zeros', () => {
+      const comp = shallow(<Day4 input="iwrupvqb" input2 />);
+      expect(comp.find('#output').text()).toEqual('9958218');
     });
   });
 });

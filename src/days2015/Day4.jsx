@@ -2,17 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MD5 from 'md5.js';
 
-console.log(new MD5().update('42').digest('hex'));
-
 function Day4({ input, input2, name, name2, handleInputChange }) {
-  const output = input;
-  const output2 = input2;
+  let tries = 10000000;
+  let count = 0;
+  let notDone = true;
+  let output;
+  let output2;
+
+  while (tries >= 0 && notDone) {
+    tries -= 1;
+    count += 1;
+
+    const s = new MD5().update(`${input}${count}`).digest('hex');
+
+    if (s.indexOf('00000') === 0) {
+      output = count;
+      if (!input2) {
+        notDone = false;
+      }
+    }
+
+    if (s.indexOf('000000') === 0) {
+      output2 = count;
+      notDone = false;
+    }
+  }
 
   return (
     <div>
       <p>
         {'2015 D4 P1 - '}
-        <span id="output">{output || 'ERROR'}</span>
+        <span id="output">{`${output}`}</span>
       </p>
       <p>
         {'2015 D4 P2 - '}
@@ -35,7 +55,7 @@ Day4.propTypes = {
 
 Day4.defaultProps = {
   input: '',
-  input2: '',
+  input2: false,
   name: '',
   name2: '',
   handleInputChange: () => {},
