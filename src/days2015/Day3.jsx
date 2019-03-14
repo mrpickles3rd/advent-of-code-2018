@@ -21,8 +21,8 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
     }
   });
 
-  const key1 = 'Santa';
-  const key2 = 'roboSanta';
+  const key1 = Symbol('Santa');
+  const key2 = Symbol('roboSanta');
   const obj2 = {
     [key1]: {
       x0y0: 1,
@@ -38,6 +38,7 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
   let output2 = 1;
   input.split('').forEach((v, i) => {
     const santa = (i % 2 === 1) ? key1 : key2;
+    const otherSanta = santa === key1 ? key2 : key1;
 
     if (v === '^' || v === 'v') {
       obj2[santa].x += v === '^' ? 1 : -1;
@@ -48,11 +49,14 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
     if (obj2[santa][`x${obj2[santa].x}y${obj2[santa].y}`]) {
       obj2[santa][`x${obj2[santa].x}y${obj2[santa].y}`] += 1;
     } else {
-      output2 += 1;
+      if (obj2[otherSanta][`x${obj2[santa].x}y${obj2[santa].y}`] === undefined) {
+        output2 += 1;
+      }
+
       obj2[santa][`x${obj2[santa].x}y${obj2[santa].y}`] = 1;
     }
   });
-console.log('obj2 === ', obj2)
+
   return (
     <div>
       <p>

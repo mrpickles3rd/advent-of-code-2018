@@ -60,9 +60,15 @@ describe('<Day3 />', () => {
       expect(comp.find('#output2').text()).toEqual('11');
     });
 
+    it('check santa and robo-santa dont hit the same house', () => {
+      const input1 = '^>>^';
+      const comp = shallow(<Day3 input={input1} />);
+      expect(comp.find('#output2').text()).toEqual('4');
+    });
+
     it('Day 3 p 2 is', () => {
       const comp = shallow(<Day3 input={Day3P1} />);
-      expect(comp.find('#output2').text()).toEqual('2783');
+      expect(comp.find('#output2').text()).toEqual('2631');
     });
   });
 });
