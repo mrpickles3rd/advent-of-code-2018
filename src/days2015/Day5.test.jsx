@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 
-import Day5 from './Day5';
+import Day5, * as test from './Day5';
 
 describe('<Day5 />', () => {
   it('renders without crashing', () => {
@@ -18,25 +18,23 @@ describe('<Day5 />', () => {
   describe('part one', () => {
     describe('A nice string is one with all of the following properties', () => {
       it('It contains at least three vowels (aeiou only), like aei, xazegov, or aeiouaeiouaeiou', () => {
-        const comp1 = shallow(<Day5 input="aei" />);
-        expect(comp1.find('#output').text()).toEqual('nice');
-
-        const comp2 = shallow(<Day5 input="xazegov" />);
-        expect(comp2.find('#output').text()).toEqual('nice');
-
-        const comp3 = shallow(<Day5 input="aeiouaeiouaeiou" />);
-        expect(comp3.find('#output').text()).toEqual('nice');
+        expect(test.hasVowels('aei')).toEqual(true);
+        expect(test.hasVowels('xazegov')).toEqual(true);
+        expect(test.hasVowels('aeiouaeiouaeiou')).toEqual(true);
       });
 
       it('It contains at least one letter that appears twice in a row, like xx, abcdde (dd), or aabbccdd (aa, bb, cc, or dd).', () => {
-        const comp = shallow(<Day5 input="xx" />);
-        expect(comp.find('#output').text()).toEqual('nice');
+        expect(test.doubleLetters('xx')).toEqual(true);
+        // const comp = shallow(<Day5 input="xx" />);
+        // expect(comp.find('#output').text()).toEqual('nice');
 
-        const comp2 = shallow(<Day5 input="abcdde" />);
-        expect(comp2.find('#output').text()).toEqual('nice');
+        expect(test.doubleLetters('abcdde')).toEqual(true);
+        // const comp2 = shallow(<Day5 input="abcdde" />);
+        // expect(comp2.find('#output').text()).toEqual('nice');
 
-        const comp3 = shallow(<Day5 input="aabbccdd" />);
-        expect(comp3.find('#output').text()).toEqual('nice');
+        expect(test.doubleLetters('aabbccdd')).toEqual(true);
+        // const comp3 = shallow(<Day5 input="aabbccdd" />);
+        // expect(comp3.find('#output').text()).toEqual('nice');
       });
 
       describe('It does not contain the strings ab, cd, pq, or xy, even if they are part of one of the other requirements', () => {
@@ -127,8 +125,8 @@ describe('<Day5 />', () => {
   });
 
   describe('part two', () => {
-    it('with 6 zeros', () => {
-      const comp = shallow(<Day5 input="iwrupvqb" input2 />);
+    it('ToDo', () => {
+      const comp = shallow(<Day5 input="iwrupvqb" />);
       expect(comp.find('#output').text()).toEqual('9958218');
     });
   });

@@ -49,7 +49,7 @@ Day4.propTypes = {
   input: PropTypes.string,
   input2: PropTypes.string,
   name: PropTypes.string,
-  name2: PropTypes.string,
+  name2: PropTypes.bool,
   handleInputChange: PropTypes.func,
 };
 

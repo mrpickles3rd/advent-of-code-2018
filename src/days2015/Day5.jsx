@@ -1,8 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+function notNaughty(input) {
+  return input.search(/(ab|cd|pq|xy)/) < 0;
+}
+// dvszwmarrgswjxmb
+function hasVowels(input) {
+  return input.split('').reduce((a, b) => {
+    if (b.search(/[aeiou]/) >= 0) {
+      return a + 1;
+    }
+
+    return a;
+  }, 0) >= 3;
+}
+
+function doubleLetters(input) {
+  return input.split('').some((v, i, a) => {
+    if (a[i - 1]) {
+      return v === a[i - 1];
+    }
+
+    return false;
+  });
+}
+
 function Day5({ input, input2, name, name2, handleInputChange }) {
-  const output = input;
+  let output = notNaughty(input) && hasVowels(input) && doubleLetters(input) ? 'nice' : 'naughty';
+  if (output === 'continue') {
+    output = hasVowels(input) && doubleLetters(input) ? 'nice' : 'naughty';
+  }
   const output2 = input2;
 
   return (
@@ -39,3 +66,5 @@ Day5.defaultProps = {
 };
 
 export default Day5;
+
+export { notNaughty, hasVowels, doubleLetters };
