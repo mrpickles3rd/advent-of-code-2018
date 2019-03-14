@@ -21,28 +21,38 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
     }
   });
 
-  const Santa = { x0y0: 1 };
-  const roboSanta = { x0y0: 1 };
-  let SantaX = 0;
-  let SantaY = 0;
-  let roboSantaX = 0;
-  let roboSantaY = 0;
+  const key1 = 'Santa';
+  const key2 = 'roboSanta';
+  const obj2 = {
+    [key1]: {
+      x0y0: 1,
+      x: 0,
+      y: 0,
+    },
+    [key2]: {
+      x0y0: 1,
+      x: 0,
+      y: 0,
+    },
+  };
   let output2 = 1;
-  input2.split('').forEach((v, i) => {
+  input.split('').forEach((v, i) => {
+    const santa = (i % 2 === 1) ? key1 : key2;
+
     if (v === '^' || v === 'v') {
-      x += v === '^' ? 1 : -1;
+      obj2[santa].x += v === '^' ? 1 : -1;
     } else {
-      y += v === '>' ? 1 : -1;
+      obj2[santa].y += v === '>' ? 1 : -1;
     }
 
-    if (obj[`x${x}y${y}`]) {
-      obj[`x${x}y${y}`] += 1;
+    if (obj2[santa][`x${obj2[santa].x}y${obj2[santa].y}`]) {
+      obj2[santa][`x${obj2[santa].x}y${obj2[santa].y}`] += 1;
     } else {
-      output += 1;
-      obj[`x${x}y${y}`] = 1;
+      output2 += 1;
+      obj2[santa][`x${obj2[santa].x}y${obj2[santa].y}`] = 1;
     }
   });
-
+console.log('obj2 === ', obj2)
   return (
     <div>
       <p>

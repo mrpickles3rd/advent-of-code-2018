@@ -38,7 +38,7 @@ describe('<Day3 />', () => {
     it('Day 3 Part 1 is', () => {
       const comp = shallow(<Day3 input={Day3P1} />);
       expect(comp.find('#output').text()).toEqual(`${2572}`);
-    })
+    });
   });
 
   describe('part two', () => {
@@ -58,6 +58,11 @@ describe('<Day3 />', () => {
       const input1 = '^v^v^v^v^v';
       const comp = shallow(<Day3 input={input1} />);
       expect(comp.find('#output2').text()).toEqual('11');
+    });
+
+    it('Day 3 p 2 is', () => {
+      const comp = shallow(<Day3 input={Day3P1} />);
+      expect(comp.find('#output2').text()).toEqual('2783');
     });
   });
 });
