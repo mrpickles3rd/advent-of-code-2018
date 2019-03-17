@@ -140,6 +140,8 @@ describe('<Day5 />', () => {
         expect(test.has2pairs('qjhvhtzxzqqjkmpb')).toEqual(true);
         expect(test.has2pairs('xxyxx')).toEqual(true);
 
+        expect(test.has2pairs('aaa')).toEqual(false); // not overlapping
+
         expect(test.has2pairs('uurcxstgmygtbstg')).toEqual(true); // tg
       });
 
@@ -153,9 +155,10 @@ describe('<Day5 />', () => {
         expect(test.repeatingLetter('ieodomkazucvgmuy')).toEqual(true); // odo
       });
     });
-    it('ToDo', () => {
-      const comp = shallow(<Day5 input="iwrupvqb" />);
-      expect(comp.find('#output').text()).toEqual('9958218');
+
+    it('Day 5 P 2 is', () => {
+      const comp = shallow(<Day5 input={Day5P1} />);
+      expect(comp.find('#output2').text()).toEqual('53');
     });
   });
 });

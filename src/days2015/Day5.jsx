@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function notNaughty(input) {
   return input.search(/(ab|cd|pq|xy)/) < 0;
 }
-// dvszwmarrgswjxmb
+
 function hasVowels(input) {
   return input.split('').reduce((a, b) => {
     if (b.search(/[aeiou]/) >= 0) {
@@ -26,19 +26,40 @@ function doubleLetters(input) {
 }
 
 function has2pairs(s) {
-  return s;
+  const obj = {};
+  return s.split('').some((v, i, a) => {
+    if (i > 0) {
+      const key = `${a[i - 1]}${v}`;
+      const notOverlapping = `${a[i - 2]}${a[i - 1]}` !== key;
+      if (notOverlapping && obj[key]) {
+        return true;
+      }
+      obj[key] = 1;
+      return false;
+    }
+    return false;
+  });
 }
 
 function repeatingLetter(s) {
-  return s;
+  return s.split('').some((v, i, a) => {
+    if (i > 1) {
+      if (a[i - 2] === v) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  });
 }
 
 function Day5({ input, input2, name, name2, handleInputChange }) {
   let output = 0;
-  const output2 = input2;
+  let output2 = 0;
 
   input.split('\n').forEach((v) => {
     output += notNaughty(v) && hasVowels(v) && doubleLetters(v) ? 1 : 0;
+    output2 += repeatingLetter(v) && has2pairs(v) ? 1 : 0;
   });
 
   return (
