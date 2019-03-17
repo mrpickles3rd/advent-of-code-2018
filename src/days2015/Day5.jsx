@@ -25,12 +25,21 @@ function doubleLetters(input) {
   });
 }
 
+function has2pairs(s) {
+  return s;
+}
+
+function repeatingLetter(s) {
+  return s;
+}
+
 function Day5({ input, input2, name, name2, handleInputChange }) {
-  let output = notNaughty(input) && hasVowels(input) && doubleLetters(input) ? 'nice' : 'naughty';
-  if (output === 'continue') {
-    output = hasVowels(input) && doubleLetters(input) ? 'nice' : 'naughty';
-  }
+  let output = 0;
   const output2 = input2;
+
+  input.split('\n').forEach((v) => {
+    output += notNaughty(v) && hasVowels(v) && doubleLetters(v) ? 1 : 0;
+  });
 
   return (
     <div>
@@ -67,4 +76,4 @@ Day5.defaultProps = {
 
 export default Day5;
 
-export { notNaughty, hasVowels, doubleLetters };
+export { notNaughty, hasVowels, doubleLetters, has2pairs, repeatingLetter };
