@@ -38,7 +38,7 @@ describe('<Day2 />', () => {
       expect(comp.find('#output2').text()).toEqual('34');
     });
 
-    it.only('A present with dimensions 1x1x10 requires 1+1+1+1 = 4 feet of ribbon to wrap the present plus 1*1*10 = 10 feet of ribbon for the bow, for a total of 14 feet.', () => {
+    it('A present with dimensions 1x1x10 requires 1+1+1+1 = 4 feet of ribbon to wrap the present plus 1*1*10 = 10 feet of ribbon for the bow, for a total of 14 feet.', () => {
       const input1 = `1x1x10
       1x1x10`;
       const comp = shallow(<Day2 input={input1} />);
