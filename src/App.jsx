@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import yearMap from './years';
@@ -14,57 +14,52 @@ function getDayKey(yearKey) {
   return Object.keys(yearMap[yearKey]);
 }
 
-class App extends Component {
-  state = {
-    showYear: DEFAULT_YEAR_KEY,
-    showDay: getDayToShow(DEFAULT_YEAR_KEY),
-    dayKeys: getDayKey(DEFAULT_YEAR_KEY),
-    input: '',
-    input2: '',
+function App() {
+  const [showYear, setYear] = useState(DEFAULT_YEAR_KEY);
+  const [showDay, setDay] = useState(getDayToShow(DEFAULT_YEAR_KEY));
+  const [dayKeys, setDayKeys] = useState(getDayKey(DEFAULT_YEAR_KEY));
+  const [input, setInput] = useState('');
+  const [input2, setInput2] = useState('');
+
+  function handleChangeYear({ target: { value: yearKey } }) {
+    setInput('');
+    setInput2('');
+    setYear(yearKey);
+    setDay(getDayToShow(yearKey));
+    setDayKeys(getDayKey(yearKey));
   }
 
-  handleChangeYear = ({ target: { value: yearKey } }) => {
-    this.setState({
-      input: '',
-      input2: '',
-      showYear: yearKey,
-      showDay: getDayToShow(yearKey),
-      dayKeys: getDayKey(yearKey),
-    });
+  function handleChangeDay({ target: { value } }) {
+    setInput('');
+    setInput2('');
+    setDay(value);
   }
 
-  handleChangeDay = ({ target: { value } }) => {
-    this.setState({ input: '', input2: '', showDay: value });
+  function handleInputChange({ target: { value, name } }) {
+    const inputMap = { input: setInput, input2: setInput2 };
+    inputMap[name](value); // ToDo: Fix this madness :/
   }
 
-  handleInputChange = ({ target: { value, name } }) => {
-    this.setState({ [name]: value });
-  }
+  const Day = yearMap[showYear][showDay];
 
-  render() {
-    const { input, input2, showDay, showYear, dayKeys } = this.state;
-
-    const Day = yearMap[showYear][showDay];
-
-    return (
-      <div>
-        <select id="year" value={showYear} onChange={this.handleChangeYear}>
-          {YEAR_KEYS.map(v => (<option key={v} value={v}>{v}</option>))}
-        </select>
-        <select id="day" value={showDay} onChange={this.handleChangeDay}>
-          {dayKeys.map(v => (<option key={v} value={v}>{v}</option>))}
-        </select>
-        <hr />
-        <Day
-          input={input}
-          input2={input2}
-          name="input"
-          name2="input2"
-          handleInputChange={this.handleInputChange}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <select id="year" value={showYear} onChange={handleChangeYear}>
+        {YEAR_KEYS.map(v => (<option key={v} value={v}>{v}</option>))}
+      </select>
+      <select id="day" value={showDay} onChange={handleChangeDay}>
+        {dayKeys.map(v => (<option key={v} value={v}>{v}</option>))}
+      </select>
+      <hr />
+      <Day
+        input={input}
+        input2={input2}
+        name="input"
+        name2="input2"
+        handleInputChange={handleInputChange}
+      />
+    </div>
+  );
 }
 
 export default App;
