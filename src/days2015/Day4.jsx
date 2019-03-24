@@ -47,9 +47,9 @@ function Day4({ input, input2, name, name2, handleInputChange }) {
 
 Day4.propTypes = {
   input: PropTypes.string,
-  input2: PropTypes.string,
+  input2: PropTypes.bool,
   name: PropTypes.string,
-  name2: PropTypes.bool,
+  name2: PropTypes.string,
   handleInputChange: PropTypes.func,
 };
 
