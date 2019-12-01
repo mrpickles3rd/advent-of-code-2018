@@ -14,13 +14,6 @@
     "enzyme-adapter-react-16": "^1.11.2",
     "eslint-config-airbnb": "^17.1.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "lint": "eslint **/*.js **/*.jsx",
-    "eject": "react-scripts eject"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -29,5 +22,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "lint": "eslint **/*.js **/*.jsx",
+    "eject": "react-scripts eject"
+  }
 }
