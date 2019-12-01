@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 
 import day1input from './Day1.input';
 
-function Day1({ input = day1input, input2, name, name2, handleInputChange }) {
+function Day1({ input = day1input, input2 = '', name, name2, handleInputChange }) {
   function getValue(acc, val) {
-    return acc + Math.floor(parseInt(val, 10) / 3) - 2;
+    let full = Math.floor(parseInt(val, 10) / 3) - 2;
+
+    let timeout = 999;
+    let fuleToAdd = full;
+    while (input2 && timeout > 0 && fuleToAdd > 0) {
+      timeout -= 1;
+      fuleToAdd = Math.floor(fuleToAdd / 3 - 2);
+      full += fuleToAdd > 0 ? fuleToAdd : 0;
+    }
+
+    return acc + full;
   }
   const output = input.split('\n').reduce(getValue, 0);
   const output2 = input2;

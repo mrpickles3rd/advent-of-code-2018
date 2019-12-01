@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 
 import Day1 from './Day1';
 import input from './Day1.input';
+import input2 from './Day1.input2';
 
 describe('<Day1 />', () => {
   it('renders without crashing', () => {
@@ -50,5 +51,25 @@ describe('<Day1 />', () => {
     const RESULT = '3502510';
     const comp = shallow(<Day1 input={input} />);
     expect(comp.find('#output').text()).toEqual(RESULT);
+  });
+
+  describe('Day 1 part 2', () => {
+    it('1969 requires (654 / 3 - 2) += (216 / 3 - 2) += (70 / 3 - 2) += (21 / 3 - 2) += (5 / 3 - 2) === 966', () => {
+      const testInput = '1969';
+      const comp = shallow(<Day1 input={testInput} input2 />);
+      expect(comp.find('#output').text()).toEqual('966');
+    });
+
+    it('100756 and its fuel is: 33583 + 11192 + 3728 + 1240 + 411 + 135 + 43 + 12 + 2 === 50346', () => {
+      const testInput = '100756';
+      const comp = shallow(<Day1 input={testInput} input2 />);
+      expect(comp.find('#output').text()).toEqual('50346');
+    });
+
+    it('Should get the result for day 1 part 2', () => {
+      const RESULT = '5250885';
+      const comp = shallow(<Day1 input={input} input2={input2} />);
+      expect(comp.find('#output').text()).toEqual(RESULT);
+    });
   });
 });
