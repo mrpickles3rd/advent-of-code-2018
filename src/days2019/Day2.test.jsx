@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 
 import Day2 from './Day2';
-// import input from './Day2.input';
+import input from './Day2.input';
 // import input2 from './Day2.input2';
 
 describe('<Day2 />', () => {
@@ -73,6 +73,24 @@ describe('<Day2 />', () => {
       const testInput = '1,1,1,4,99,5,6,0,99';
       const output = '30,1,1,4,2,5,6,0,99';
       const comp = shallow(<Day2 input={testInput} />);
+      expect(comp.find('#output').text()).toBe(output);
+    });
+  });
+
+  describe('get the result', () => {
+    it('should get the result is need', () => {
+      /*
+        Once you have a working computer, the first step is to restore the gravity assist program
+        (your puzzle input) to the "1202 program alarm" state it had just before the last computer caught fire.
+        To do this, before running the program,
+        ... replace position 1 with the value 12
+        ... and replace position 2 with the value 2.
+        What value is left at position 0 after the program halts?
+      */
+      const startupCode = '1202';
+      const testInput = input;
+      const output = '?????';
+      const comp = shallow(<Day2 startupCode={startupCode} input={testInput} />);
       expect(comp.find('#output').text()).toBe(output);
     });
   });
