@@ -23,18 +23,32 @@ function getValues(IntcodeProgram, programLocation) {
 
 function updateLocation(IntcodeProgram, programLocation) {
   const location = IntcodeProgram[programLocation + 3];
-
-  return IntcodeProgram[location];
+  return location;
 }
 
 function Day2({ input = _input, input2 = '', name, name2, handleInputChange }) {
   // IntcodeProgram initialization ;-P
   const IntcodeProgram = input.split(',').map(n => parseInt(n, 10));
-  const programLocation = 0;
 
-  const action = IntcodeProgram[programLocation] === 1 ? add : multiply; // map? else if? switch?
-  const value = action(getValues(IntcodeProgram, programLocation));
-  IntcodeProgram[updateLocation(IntcodeProgram, programLocation)] = value;
+  let programLocation = 0;
+  let timeout = 2;
+  // let check = 0;
+  while (timeout > 0) {
+    const programAction = IntcodeProgram[programLocation];
+
+    if (programAction === 99) {
+      break;
+    }
+
+    const action = programAction === 1 ? add : multiply; // map? else if? switch?
+    const value = action(getValues(IntcodeProgram, programLocation));
+    IntcodeProgram[updateLocation(IntcodeProgram, programLocation)] = value;
+
+    programLocation += 4;
+    timeout -= 1;
+  }
+
+
   const output = IntcodeProgram.join(',');
   const output2 = input2;
 

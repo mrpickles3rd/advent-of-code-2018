@@ -7,22 +7,37 @@ import Day2 from './Day2';
 // import input2 from './Day2.input2';
 
 describe('<Day2 />', () => {
+  const MIN_PROPS = { input: '99' };
+
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Day2 />, div);
+    ReactDOM.render(<Day2 {...MIN_PROPS} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   it('should work with enzyme', () => {
-    shallow(<Day2 />);
+    shallow(<Day2 {...MIN_PROPS} />);
   });
 
-  it('12, divide by 3 and round down to get 4, then subtract 2 to get 2', () => {
+  it('adds and multiplies /* (1===add 2===multiplies) */ (position +1, position + 2) AT (location +3)', () => {
+    /*
+      1) 1 === ADD; position => (9) => 30, position => (10) => 40; AT location => (3) => location[3] === p1 + p2
+      2) 2 === ADD;
+          position => (3) => 70 //was 3 now 70 due to step 1,
+          position => (11) => => 50;
+          AT location => (0) => location[0] === p1 * p2
+    */
     const testInput = '1,9,10,3,'
                     + '2,3,11,0,'
                     + '99,'
                     + '30,40,50';
-    const output = '1,9,10,70,'
+    // test first time (adding) only
+    // const output = '1,9,10,70,'
+    //              + '2,3,11,0,'
+    //              + '99,'
+    //              + '30,40,50';
+    // test adding and multiplying (2 line of the Intcode Program)
+    const output = '3500,9,10,70,'
                  + '2,3,11,0,'
                  + '99,'
                  + '30,40,50';
