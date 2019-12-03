@@ -42,7 +42,6 @@ describe('<App />', () => {
 
   it('should render `select` with the selected being the last in `day/index.js`', () => {
     const component = mount(<App />);
-    // const expectedSelected = Object.keys(dayMap)[Object.keys(dayMap).length - 1];
     const expectedSelected = Object.keys(dayMap)[Object.keys(dayMap).length - 1];
 
     expect(component.find('select#day').props().value).toBe(expectedSelected);
