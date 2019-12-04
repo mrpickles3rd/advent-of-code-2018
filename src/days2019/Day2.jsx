@@ -11,18 +11,18 @@ function multiply([a, b]) {
   return a * b;
 }
 
-function getValues(IntcodeProgram, programLocation) {
-  const firstValueLocation = IntcodeProgram[programLocation + 1];
-  const secondValueLocation = IntcodeProgram[programLocation + 2];
+function getValues(memory, programLocation) {
+  const firstValueLocation = memory[programLocation + 1];
+  const secondValueLocation = memory[programLocation + 2];
 
   return [
-    IntcodeProgram[firstValueLocation],
-    IntcodeProgram[secondValueLocation],
+    memory[firstValueLocation],
+    memory[secondValueLocation],
   ];
 }
 
-function updateLocation(IntcodeProgram, programLocation) {
-  const location = IntcodeProgram[programLocation + 3];
+function updateLocation(memory, programLocation) {
+  const location = memory[programLocation + 3];
   return location;
 }
 
@@ -31,42 +31,48 @@ function getNumber(n) {
 }
 
 function IntcodeComputer(inputs, inishalMemory) {
-  // IntcodeProgram initialization ;-P
-  const IntcodeProgram = inishalMemory.split(',').map(getNumber);
+  // MEMORY initialization ;-P
+  // // // // // const memory = inishalMemory.split(',').map(getNumber);
+  const memory = [...inishalMemory];
   // Running the program
   const isRunning = !!inputs;
 
   if (isRunning) {
-    inputs
-      .map(getNumber)
-      .forEach((val, idx) => {
-        IntcodeProgram[idx + 1] = val;
-      });
+    inputs.map(getNumber).forEach(
+      (val, idx) => { memory[idx + 1] = val; },
+    );
   }
   let programLocation = 0;
   let timeout = 999;
   // let check = 0;
   while (timeout > 0) {
-    const programAction = IntcodeProgram[programLocation];
+    const programAction = memory[programLocation];
 
     if (programAction === 99) {
       break;
     }
 
     const action = programAction === 1 ? add : multiply; // map? else if? switch?
-    const value = action(getValues(IntcodeProgram, programLocation));
-    IntcodeProgram[updateLocation(IntcodeProgram, programLocation)] = value;
+    const value = action(getValues(memory, programLocation));
+    memory[updateLocation(memory, programLocation)] = value;
 
     programLocation += 4;
     timeout -= 1;
   }
 
-  const output = isRunning ? IntcodeProgram[0] : IntcodeProgram.join(',');
+  const output = isRunning ? memory[0] : memory.join(',');
   return output;
 }
 
+// ToDo: `input = _input` ... Needed?
+// Default Props ... Time off and I forgot about it :(
 function Day2({ startupCodes, input = _input, input2 = '', name, name2, handleInputChange }) {
-  const output = IntcodeComputer(startupCodes, input);
+  const inishalMemory = input.split(',').map(getNumber);
+
+  const isRunningProgram = (Array.isArray(startupCodes) && startupCodes.length > 0);
+  const inputs = isRunningProgram ? startupCodes.map(getNumber) : false;
+  const output = IntcodeComputer(inputs, inishalMemory);
+
   const output2 = input2;
 
   return (
@@ -88,7 +94,7 @@ function Day2({ startupCodes, input = _input, input2 = '', name, name2, handleIn
 
 Day2.propTypes = {
   // ToDo: fix eslint hack
-  startupCodes: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/require-default-props
+  startupCodes: PropTypes.arrayOf(PropTypes.string),
   input: PropTypes.string,
   input2: PropTypes.string,
   name: PropTypes.string,
@@ -97,6 +103,7 @@ Day2.propTypes = {
 };
 
 Day2.defaultProps = {
+  startupCodes: [],
   input: '',
   input2: '',
   name: '',
