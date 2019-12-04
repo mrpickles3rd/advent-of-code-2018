@@ -30,14 +30,14 @@ function getNumber(n) {
   return parseInt(n, 10);
 }
 
-function Day2({ startupCodes, input = _input, input2 = '', name, name2, handleInputChange }) {
+function IntcodeComputer(inputs, inishalMemory) {
   // IntcodeProgram initialization ;-P
-  const IntcodeProgram = input.split(',').map(getNumber);
+  const IntcodeProgram = inishalMemory.split(',').map(getNumber);
   // Running the program
-  const isRunning = startupCodes;
+  const isRunning = !!inputs;
 
   if (isRunning) {
-    startupCodes
+    inputs
       .map(getNumber)
       .forEach((val, idx) => {
         IntcodeProgram[idx + 1] = val;
@@ -61,8 +61,12 @@ function Day2({ startupCodes, input = _input, input2 = '', name, name2, handleIn
     timeout -= 1;
   }
 
-
   const output = isRunning ? IntcodeProgram[0] : IntcodeProgram.join(',');
+  return output;
+}
+
+function Day2({ startupCodes, input = _input, input2 = '', name, name2, handleInputChange }) {
+  const output = IntcodeComputer(startupCodes, input);
   const output2 = input2;
 
   return (
