@@ -26,12 +26,25 @@ function updateLocation(IntcodeProgram, programLocation) {
   return location;
 }
 
-function Day2({ input = _input, input2 = '', name, name2, handleInputChange }) {
-  // IntcodeProgram initialization ;-P
-  const IntcodeProgram = input.split(',').map(n => parseInt(n, 10));
+function getNumber(n) {
+  return parseInt(n, 10);
+}
 
+function Day2({ startupCodes, input = _input, input2 = '', name, name2, handleInputChange }) {
+  // IntcodeProgram initialization ;-P
+  const IntcodeProgram = input.split(',').map(getNumber);
+  // Running the program
+  const isRunning = startupCodes;
+
+  if (isRunning) {
+    startupCodes
+      .map(getNumber)
+      .forEach((val, idx) => {
+        IntcodeProgram[idx + 1] = val;
+      });
+  }
   let programLocation = 0;
-  let timeout = 2;
+  let timeout = 999;
   // let check = 0;
   while (timeout > 0) {
     const programAction = IntcodeProgram[programLocation];
@@ -49,7 +62,7 @@ function Day2({ input = _input, input2 = '', name, name2, handleInputChange }) {
   }
 
 
-  const output = IntcodeProgram.join(',');
+  const output = isRunning ? IntcodeProgram[0] : IntcodeProgram.join(',');
   const output2 = input2;
 
   return (
@@ -70,6 +83,8 @@ function Day2({ input = _input, input2 = '', name, name2, handleInputChange }) {
 }
 
 Day2.propTypes = {
+  // ToDo: fix eslint hack
+  startupCodes: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/require-default-props
   input: PropTypes.string,
   input2: PropTypes.string,
   name: PropTypes.string,

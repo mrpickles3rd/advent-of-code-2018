@@ -19,7 +19,7 @@ describe('<Day2 />', () => {
     shallow(<Day2 {...MIN_PROPS} />);
   });
 
-  describe('a basic application should run when;', () => {
+  describe('a basic application should "initialize";', () => {
     it('adds and multiplies /* (1===add 2===multiplies) */ (position +1, position + 2) AT (location +3)', () => {
       /*
         1) 1 === ADD; position => (9) => 30, position => (10) => 40; AT location => (3) => location[3] === p1 + p2
@@ -47,7 +47,7 @@ describe('<Day2 />', () => {
     });
   });
 
-  describe('edges cases;', () => {
+  describe('edges cases on "initialization";', () => {
     it('1,0,0,0,99 becomes 2,0,0,0,99 (1 + 1 = 2)', () => {
       const testInput = '1,0,0,0,99';
       const output = '2,0,0,0,99';
@@ -77,8 +77,8 @@ describe('<Day2 />', () => {
     });
   });
 
-  describe('get the result', () => {
-    it('should get the result is need', () => {
+  describe('get the result from the running program', () => {
+    it('should "set the program input" by setting index 1 === 12 and index 2 === 2', () => {
       /*
         Once you have a working computer, the first step is to restore the gravity assist program
         (your puzzle input) to the "1202 program alarm" state it had just before the last computer caught fire.
@@ -87,10 +87,22 @@ describe('<Day2 />', () => {
         ... and replace position 2 with the value 2.
         What value is left at position 0 after the program halts?
       */
-      const startupCode = '1202';
+
+      const startupCodes = ['12', '02']; // ToDo: split 1202 somehow
+
+      const testInput = `${'1' || '2'},3,3,0,99,0,0,0,0,0,0,0,3`;
+      const output = '5';
+
+      const comp = shallow(<Day2 startupCodes={startupCodes} input={testInput} />);
+      expect(comp.find('#output').text()).toBe(output);
+    });
+
+    it('should "set the program input" by setting index 1 === 12 and index 2 === 2', () => {
+      const startupCodes = ['12', '02']; // ToDo: split 1202 somehow
       const testInput = input;
-      const output = '?????';
-      const comp = shallow(<Day2 startupCode={startupCode} input={testInput} />);
+      const output = '8017076';
+
+      const comp = shallow(<Day2 startupCodes={startupCodes} input={testInput} />);
       expect(comp.find('#output').text()).toBe(output);
     });
   });
