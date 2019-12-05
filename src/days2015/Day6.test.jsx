@@ -42,9 +42,9 @@ describe('<Day6 />', () => {
   });
   it('toggle 0,0 through 999,0 would toggle the first line of '
   + '1000 lights, turning off the ones that were on, and turning '
-  + 'on the ones that were off.');
+  + 'on the ones that were off.', () => {});
   it('turn off 499,499 through 500,500 would turn off '
-  + '(or leave off) the middle four lights');
+  + '(or leave off) the middle four lights', () => {});
   // 1000x1000 grid
   // Lights in your grid are numbered from 0 to 999
   // 0,0, 0,999, 999,999, and 999,0.
