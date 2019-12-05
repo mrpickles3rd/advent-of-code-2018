@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 
 import Day6, { test } from './Day6';
 
-console.debug(test);
 const GRID_SIZE = 1000;
 
 describe('<Day6 />', () => {
@@ -41,8 +40,11 @@ describe('<Day6 />', () => {
   it('turn on 0,0 through 999,999 would turn on (or leave on) every light', () => {
     expect(false).toBe(false);
   });
-  it('toggle 0,0 through 999,0 would toggle the first line of 1000 lights, turning off the ones that were on, and turning on the ones that were off.');
-  it('turn off 499,499 through 500,500 would turn off (or leave off) the middle four lights');
+  it('toggle 0,0 through 999,0 would toggle the first line of '
+  + '1000 lights, turning off the ones that were on, and turning '
+  + 'on the ones that were off.');
+  it('turn off 499,499 through 500,500 would turn off '
+  + '(or leave off) the middle four lights');
   // 1000x1000 grid
   // Lights in your grid are numbered from 0 to 999
   // 0,0, 0,999, 999,999, and 999,0.

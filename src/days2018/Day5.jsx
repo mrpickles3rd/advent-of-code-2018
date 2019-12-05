@@ -7,9 +7,6 @@ function getPartOne(val) {
   let v;
 
   while (tries > 0 && notDone) {
-    if (tries < 10) {
-      // console.log('tries === ', tries);
-    }
     v = (v && v.filter(Boolean)) || val;
     tries -= 1;
     notDone = false;
@@ -31,9 +28,7 @@ function getPartOne(val) {
 }
 
 function Day5({ input, input2, test, name, name2, handleInputChange }) {
-  // console.time('ASD');
   const output = getPartOne(input.split(''));
-  // console.timeEnd('ASD');
 
   const toCheck = (test && test.split('')) || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const output2 = toCheck
