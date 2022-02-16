@@ -37,7 +37,7 @@ function App() {
 
   function handleInputChange({ target: { value, name } }) {
     const inputMap = { input: setInput, input2: setInput2 };
-    inputMap[name](value); // ToDo: Fix this madness :/
+    inputMap[name](value); // ToDo: Fix this madness :/ ... Send setXXX as props
   }
 
   const Day = yearMap[showYear][showDay];
