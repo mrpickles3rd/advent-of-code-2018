@@ -26,7 +26,7 @@ function Day2({ input, input2, name, name2, handleInputChange }) {
   const arr = input2
     .split('\n');
 
-  const matched = arr.filter((aRow => arr.some((thisRow) => {
+  const matched = arr.filter(((aRow) => arr.some((thisRow) => {
     if (aRow === thisRow) return false;
     let notMatched = 0;
     const filterItem = aRow.split('');

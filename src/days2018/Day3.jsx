@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 function Day3({ input, input2, name, name2, handleInputChange }) {
   const values = input.split('\n').map(
-    v => v
+    (v) => v
       .replace(/(\s+|,|:|x|#|@)/g, ' ')
       .split(' ')
       .filter(Boolean)
       .slice(1, 5)
-      .map(v2 => parseInt(v2, 10)),
+      .map((v2) => parseInt(v2, 10)),
   );
   const grid = Array.from({ length: 1234 }, () => Array.from({ length: 1234 }, () => 0));
 
@@ -22,7 +22,7 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
   });
 
   let output = 0;
-  grid.forEach(v => v.forEach((v2) => { output = v2 === 'X' ? output += 1 : output += 0; }));
+  grid.forEach((v) => v.forEach((v2) => { output = v2 === 'X' ? output += 1 : output += 0; }));
 
   // Find full paten
   let compleatIDX;
@@ -52,7 +52,7 @@ function Day3({ input, input2, name, name2, handleInputChange }) {
         {'D3 P1 - '}
         <span id="output">{output || 'OPPS! :('}</span>
       </p>
-      <pre>{JSON.stringify(grid.map(v => v.join(', ')), null, 3)}</pre>
+      <pre>{JSON.stringify(grid.map((v) => v.join(', ')), null, 3)}</pre>
       <p>
         {'D3 P2 - '}
         <span id="output2">{output2}</span>

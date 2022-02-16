@@ -14,7 +14,7 @@ function getList(input) {
   let id;
   const list = {};
 
-  input.split('\n').map(v => v.trim()).sort(byDate).forEach((v, idx, arr) => {
+  input.split('\n').map((v) => v.trim()).sort(byDate).forEach((v, idx, arr) => {
     if (v.indexOf('Guard #') >= 0) {
       id = parseInt(v.substring(v.indexOf('#') + 1, v.length), 10);
       if (!list[id]) {
@@ -44,7 +44,7 @@ function getList(input) {
 
 function getMostSleepKey(list) {
   return (Object.keys(list).map(
-    key => ({ key, sleep: list[key].sleep }),
+    (key) => ({ key, sleep: list[key].sleep }),
   ).sort((a, b) => b.sleep - a.sleep)[0] || {}).key;
 }
 
@@ -63,7 +63,7 @@ function getMinsSleeping(item = {}) {
 
 function getMostPopularMin(list) {
   const r = ((Object.keys(list).map(
-    key => getMinsSleeping(list[key]).sort((a, b) => b.val - a.val),
+    (key) => getMinsSleeping(list[key]).sort((a, b) => b.val - a.val),
   ).sort((a, b) => b[0].val - a[0].val)[0] || [])[0] || {});
 
   return r.idx * r.key;

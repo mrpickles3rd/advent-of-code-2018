@@ -45,10 +45,10 @@ function App() {
   return (
     <div>
       <select id="year" value={showYear} onChange={handleChangeYear}>
-        {YEAR_KEYS.map(v => (<option key={v} value={v}>{v}</option>))}
+        {YEAR_KEYS.map((v) => (<option key={v} value={v}>{v}</option>))}
       </select>
       <select id="day" value={showDay} onChange={handleChangeDay}>
-        {dayKeys.map(v => (<option key={v} value={v}>{v}</option>))}
+        {dayKeys.map((v) => (<option key={v} value={v}>{v}</option>))}
       </select>
       <hr />
       <Day

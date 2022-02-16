@@ -8,7 +8,7 @@ function descending(a, b) {
 function Day2({ input, input2, name, name2, handleInputChange }) {
   let output2 = 0;
   const output = input.split('\n').map((v) => {
-    const [l, w, h] = v.split('x').map(v2 => parseInt(v2, 10));
+    const [l, w, h] = v.split('x').map((v2) => parseInt(v2, 10));
     const p1 = [(2 * l * w), (2 * w * h), (2 * h * l)].sort(descending);
 
     const p2 = [l, w, h].sort(descending);

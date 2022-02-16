@@ -7,11 +7,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "~4.0.0"
   },
   "devDependencies": {
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2"
+    "enzyme-adapter-react-16": "^1.11.2",
+    "eslint-config-airbnb": "^19.0.4"
   },
   "eslintConfig": {
     "extends": "react-app"

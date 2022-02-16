@@ -31,8 +31,8 @@ describe('<Day6 />', () => {
 
   it('Should have a grid full of `false`', () => {
     test.grid.every(
-      row => row.every(
-        cell => expect(cell).toBe(false),
+      (row) => row.every(
+        (cell) => expect(cell).toBe(false),
       ),
     );
   });

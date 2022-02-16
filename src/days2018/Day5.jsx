@@ -33,7 +33,7 @@ function Day5({ input, input2, test, name, name2, handleInputChange }) {
   const toCheck = (test && test.split('')) || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const output2 = toCheck
     .map(
-      v => getPartOne(input2.split('').filter(val => val.toUpperCase() !== v)),
+      (v) => getPartOne(input2.split('').filter((val) => val.toUpperCase() !== v)),
     )
     .sort((a, b) => a - b)[0];
 
