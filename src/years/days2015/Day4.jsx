@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MD5 from 'md5.js';
+// import MD5 from 'md5.js';
 
 function Day4({ input, input2, name, name2, handleInputChange }) {
   let tries = 10000000;
@@ -9,24 +9,24 @@ function Day4({ input, input2, name, name2, handleInputChange }) {
   let output;
   let output2;
 
-  while (tries >= 0 && notDone) {
-    tries -= 1;
-    count += 1;
+  // while (tries >= 0 && notDone) {
+  //   tries -= 1;
+  //   count += 1;
 
-    const s = new MD5().update(`${input}${count}`).digest('hex');
+  //   const s = new MD5().update(`${input}${count}`).digest('hex');
 
-    if (s.indexOf('00000') === 0) {
-      output = count;
-      if (!input2) {
-        notDone = false;
-      }
-    }
+  //   if (s.indexOf('00000') === 0) {
+  //     output = count;
+  //     if (!input2) {
+  //       notDone = false;
+  //     }
+  //   }
 
-    if (s.indexOf('000000') === 0) {
-      output2 = count;
-      notDone = false;
-    }
-  }
+  //   if (s.indexOf('000000') === 0) {
+  //     output2 = count;
+  //     notDone = false;
+  //   }
+  // }
 
   return (
     <div>
