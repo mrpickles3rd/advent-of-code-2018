@@ -1,14 +1,13 @@
 {
-  "extends": ["react-app", "airbnb"],
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "airbnb"
+  ],
   "rules": {
-    "indent": ["error", 2],
-    "max-len": ["error", { "code": 120 }],
-    "object-curly-newline": ["error", { "multiline": true, "minProperties": 8 }]
-  },
-  "overrides": [{
-    "files": [ "*.test.jsx" ],
-    "rules": {
-      "react/jsx-props-no-spreading": "off"
-    }
-  }]
+    "react/require-default-props": "off",
+    "object-curly-newline": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "max-len": ["error", { "code": 111 }]
+  }
 }

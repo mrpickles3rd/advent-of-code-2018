@@ -17,7 +17,7 @@ describe('<Day4 />', () => {
     shallow(<Day4 />);
   });
 
-  describe('part one', () => {
+  describe.skip('part one', () => {
     it('If your secret key is abcdef, the answer is 609043, because the MD5 hash of abcdef609043 starts with five zeroes (000001dbbfa...), and it is the lowest such number to do so', () => {
       const input = 'abcdef';
       const comp = shallow(<Day4 input={input} />);

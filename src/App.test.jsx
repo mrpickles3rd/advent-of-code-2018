@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 
 import App from './App';
 
-import dayMap from './days2019';
+import dayMap from './years/days2019';
 import yearMap from './years';
 
 describe('<App />', () => {
