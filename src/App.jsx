@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 import yearMap from './years';
-import Wordle from './wordle/index';
+import { Wordle } from './wordle/index';
 
 const YEAR_KEYS = [...Object.keys(yearMap)];
 const DEFAULT_YEAR_KEY = YEAR_KEYS[YEAR_KEYS.length - 1]; // YEAR_KEYS[0];

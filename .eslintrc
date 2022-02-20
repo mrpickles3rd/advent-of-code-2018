@@ -4,10 +4,13 @@
     "react-app/jest",
     "airbnb"
   ],
+  "ignorePatterns": ["*data_*"],
   "rules": {
     "react/require-default-props": "off",
     "object-curly-newline": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "max-len": ["error", { "code": 111 }]
+    "max-len": ["error", { "code": 111 }],
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error"
   }
 }
